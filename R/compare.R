@@ -32,8 +32,8 @@ compare_pdf <- function(ref_pdf, new_pdf, report_path = "comparepdf_report.html"
 #'
 #' @param ref_image A `magick-image` object (reference page).
 #' @param new_image A `magick-image` object (new page).
-#' @param fuzz Fuzz tolerance percentage (0-100). Default 5 tolerates minor
-#'   sub-pixel rendering noise.
+#' @param fuzz Fuzz tolerance percentage (0-100). Default 0 for exact
+#'   pixel comparison.
 #' @param metric Comparison metric passed to [magick::image_compare()].
 #'   Default `"AE"` (absolute error count).
 #'
@@ -42,7 +42,7 @@ compare_pdf <- function(ref_pdf, new_pdf, report_path = "comparepdf_report.html"
 #'   - `distortion`: numeric, the distortion value from the comparison
 #'   - `diff_image`: a `magick-image` showing pixel differences
 #'
-compare_pages <- function(ref_image, new_image, fuzz = 5, metric = "AE") {
+compare_pages <- function(ref_image, new_image, fuzz = 0, metric = "AE") {
   assert_magick_image(ref_image, "ref_image")
   assert_magick_image(new_image, "new_image")
   assert_positive_number(fuzz + 1, "fuzz") # allow 0, just check it's numeric and non-negative
@@ -74,8 +74,8 @@ compare_pages <- function(ref_image, new_image, fuzz = 5, metric = "AE") {
 #'
 #' @param ref_pdf Path to the reference PDF.
 #' @param new_pdf Path to the new PDF.
-#' @param dpi Resolution for rendering. Default 150.
-#' @param fuzz Fuzz tolerance percentage (0-100). Default 5.
+#' @param dpi Resolution for rendering. Default 300.
+#' @param fuzz Fuzz tolerance percentage (0-100). Default 0.
 #' @param metric Comparison metric. Default `"AE"`.
 #'
 #' @return A `comparepdf_result` S3 object (list) with:
@@ -91,7 +91,7 @@ compare_pages <- function(ref_image, new_image, fuzz = 5, metric = "AE") {
 #'   - `fuzz`: fuzz used
 #'   - `metric`: metric used
 #'
-compare_pdfs <- function(ref_pdf, new_pdf, dpi = 150, fuzz = 5, metric = "AE") {
+compare_pdfs <- function(ref_pdf, new_pdf, dpi = 300, fuzz = 0, metric = "AE") {
   ref_pdf <- assert_pdf(ref_pdf, "ref_pdf")
   new_pdf <- assert_pdf(new_pdf, "new_pdf")
   assert_positive_number(dpi, "dpi")

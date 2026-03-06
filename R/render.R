@@ -3,12 +3,12 @@
 #' Converts each page of a PDF to a magick image object using `pdftools`.
 #'
 #' @param pdf_path Path to a PDF file.
-#' @param dpi Resolution in dots per inch for rendering. Default 150.
+#' @param dpi Resolution in dots per inch for rendering. Default 300.
 #' @param pages Integer vector of page numbers to render, or `NULL` for all pages.
 #'
 #' @return A named list of `magick-image` objects (`page_001`, `page_002`, ...).
 #'
-render_pdf <- function(pdf_path, dpi = 150, pages = NULL) {
+render_pdf <- function(pdf_path, dpi = 300, pages = NULL) {
   pdf_path <- assert_pdf(pdf_path, "pdf_path")
   assert_positive_number(dpi, "dpi")
 
