@@ -1,0 +1,19 @@
+Package: comparepdf
+Title: Pixel-Level PDF Comparison Tool
+Version: 1.0.0
+Authors@R:
+    person("Edward", "Frankenberger", email = "edward.frankenberger@nih.gov", role = c("aut", "cre"))
+Description: Compare PDF documents page-by-page at the pixel level. Renders
+    PDF pages to images, computes pixel differences with configurable fuzz
+    tolerance, and generates self-contained HTML diff reports with
+    visualizations.
+License: TBD
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+    base64enc,
+    pdftools (>= 3.0.0),
+    magick (>= 2.7.0),
+    cli (>= 3.6.0),
+    fs (>= 1.6.0)
