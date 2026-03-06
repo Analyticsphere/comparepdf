@@ -27,13 +27,17 @@ library(comparepdf)
 compare_pdf(
   ref_pdf = "/path/to/golden-reference-file.pdf",
   new_pdf = "/path/to/updated-file.pdf",
-  report_path = "/path/to/pdf_comparison_report.html"
+  report_path = "/path/to/pdf_comparison_report.html",
+  dpi = 300,
+  fuzz = 0
 )
 ```
 
 Replace `/path/to/` and the example file names above with the appropriate paths and file names on your local machine. 
 
 The resulting comparision HTML report can have any name, although it must end in `.html`; `pdf_comparison_report.html` is only used as example. Note that the package will overwrite the HTML report file if you run `compare_pdf()` more than once with the same `report_path`.
+
+PDF-to-image quality, and comparison strictness, can be changed with the `dpi` and `fuzz` settings, respectively. For consistent PDF comparisons, `dpi = 300` and `fuzz = 0` should be used. Decreasing `dpi` or increasing `fuzz` may reduce false positives and decrease runtime, but may result in false negatives.
 
 ### What `compare_pdf()` does
 
